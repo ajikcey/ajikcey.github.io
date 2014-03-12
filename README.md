@@ -1,3 +1,3 @@
 ajikcey.github.com
 ==================
-<a href="ajikcey.github.com">My blog</a>
+<a href="http://ajikcey.github.com">My blog</a>
