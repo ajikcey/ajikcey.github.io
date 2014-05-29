@@ -1,3 +1,3 @@
 Моя песочница
 ================
-<a href="/form.html" target="_blank">DEMO</a>
+<a href="http://ajikcey.github.io/form.html" target="_blank">DEMO</a>
