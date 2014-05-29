@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="ajikcey.github.io : " />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>ajikcey.github.io</title>
+    
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="/JSubmitform/JSubmitform.js"></script>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/ajikcey">View on GitHub</a>
+
+          <h1 id="project_title">ajikcey.github.io</h1>
+          <h2 id="project_tagline"></h2>
+
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <div class="row">
+
+		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<h1 class="page-header"><?= $this->title ?></h1>
+
+			<div class="row">
+				<div class="col-md-6">
+
+					<!--form-->
+					<form class="form-horizontal" role="form" action="/index/pass_change_submit" method="post">
+
+						<div class="form-group">
+							<label for="old_pass" class="col-sm-4 control-label">Пароль</label>
+
+							<div class="col-sm-8">
+								<input type="password" class="form-control" name="old_pass" placeholder=""
+								       error="Введите пароль" necessary>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="rep_pass" class="col-sm-4 control-label">Повторите пароль</label>
+
+							<div class="col-sm-8">
+								<input type="password" class="form-control" name="rep_pass" placeholder=""
+								       error="Повторите пароль" necessary>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="new_pass" class="col-sm-4 control-label">Новый пароль</label>
+
+							<div class="col-sm-8">
+								<input type="password" class="form-control" name="new_pass" placeholder=""
+								       error="Введите новый пароль" necessary>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-offset-4 col-sm-8">
+								<button type="submit" class="btn btn-primary" id="_submit">Отправить</button>
+								<!--error-->
+								<span id="_error"><span id="_txt"></span></span>
+							</div>
+						</div>
+					</form>
+
+					<!--script-->
+					<script>
+						formsubmit($('#_submit'));
+					</script>
+				</div>
+			</div>
+		</div>
+	</div>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
