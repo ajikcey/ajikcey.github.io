@@ -1,71 +1,102 @@
-$(document).ready(function () {
+function JSubmitform(form, params) {
+    
+    // validation
+    if (!form || typeof(form) != "object") {
+        return false;
+    }
 
-});
+    // default
+    if (!params || typeof(params) != "object") {
+        params.err = form.find('#JSf_error'),
+        params.attr = "error",
+        params.img_pl =  form.find('#JSf_loading'),
+        params.img = "/files/images/ajax-loader.gif",
+        params.img_pend = "pre",
+        params.success = function() {},
+        params.error = function() {},
+        params.warning = function() {},
+        params.always = function() {},
+    } else {
+        
+    }
 
-function formsubmit(btn, callback) {
-    var sub = false;    // флаг отправки запроса
+    var sub = false;    // send request flag
 
-    $(btn).on('click', function () {
-        var form = $(this).parents('form');
-        form.find('#_error').hide();
+    form.find('*:submit).on('click', function () {
+        
+        params.err.hide();
 
         var err_b = false;
-        $('form *[necessary=""]').each(function() {
+        
+        form.find('*[necessary=""]').each(function() {
+            
+            // if not filled in the required fields
             if (!$(this).val()) {
-                form.find('#_error').show().find('#_txt').html($(this).attr('error'));
-                error($(this));
+                params.err.html($(this).attr(params.attr)).show();
+
                 err_b = true;
+                
                 return false;
             } else {
-                success($(this));
+                
             }
         });
 
         if (!sub && !err_b) {
             sub = true;
-            $(this).prepend('<img id="_form_loading" src="/files/images/ajax-loader.gif" /> ');
-            $.post(form.attr('action'), form.serialize(),
-                function (data) {
+            
+            // image loading insert to the place
+            if (params.img_pend == "pre") {
+                params.img_pl.prepend('<img src="' + params.img + '" /> ');
+            } else if (params.img_pend == "ap") {
+                params.img_pl.append('<img src="' + params.img + '" /> ');
+            }
+            
+            // ajax
+            $.ajax({
+                type: form.attr('method'),
+                url: form.attr('action'),
+                data: form.serialize(),
+                success: function (data) {
 
                     try {
                         var o = $.parseJSON(data);
                         if (o.success) {
-                            form.find('#_error').show().find('#_txt').html(o.success);
+                            
+                            params.err.html(o.success).show();
 
-                            // очистка всего, что было заполнено
-                            form.find('*').val('');
-
-                            // callback
-                            if (callback && typeof(callback) === "function") {
-                                callback();
+                            // success
+                            if (success && typeof(success) === "function") {
+                                params.success();
                             }
                         } else {
-                            form.find('#_error').show().find('#_txt').html(o.error);
-                            error(form.find('* [name="' + o.input_name + '"]'));
+                            // error
+                            if (error && typeof(error) === "function") {
+                                params.error();
+                            }
                         }
                     } catch (e) {
-                        form.find('#_error').show().find('#_txt').html('Ошибка!');
+                        
+                        // for debug
+                        params.err.html('Error').show();
+                        
+                        // warning
+                        if (warning && typeof(warning) === "function") {
+                            params.warning();
+                        }
                     }
-                    $('#_form_loading').remove();
+                    params.img_pl.html("");
 
                     sub = false;
-                });
+                }
+            })
+            .always(function() {
+                // always
+                if (always && typeof(always) === "function") {
+                    params.always();
+                }
+            });
         }
         return false;
     });
-}
-
-function success(input) {
-    remove(input);
-    input.parent().addClass('has-feedback').addClass('has-success').append('<span class="glyphicon glyphicon-ok form-control-feedback"></span>');
-}
-
-function error(input) {
-    remove(input);
-    input.parent().addClass('has-feedback').addClass('has-error').append('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');
-}
-
-function remove(input) {
-    input.parent().find('span').remove();
-    input.parent().removeClass('has-feedback').removeClass('has-success').removeClass('has-error');
 }
