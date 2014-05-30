@@ -115,6 +115,8 @@ function JSubmitform(form, params) {
                         
                     // warning
                     callf(params.warning());
+                    
+                    sub = false;
                 }
             })
             .always(function() {
