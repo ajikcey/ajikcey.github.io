@@ -24,6 +24,8 @@ function JSubmitform(form, params) {
 
     form.find('*:submit').on('click', function () {
         
+        alert();
+        
         params.err.hide();
 
         var err_b = false;
