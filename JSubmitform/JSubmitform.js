@@ -34,12 +34,7 @@ function JSubmitform(form, params) {
     // default
     if (!params || typeof(params) != "object") {
         params = {
-            img: "/JSubmitform/load.gif",
-            success: function() {},
-            error: function() {},
-            warning: function() {},
-            always: function() {},
-            noresponse: function() {}
+            img: "/JSubmitform/load.gif"
         };
     } else {
         
@@ -71,6 +66,9 @@ function JSubmitform(form, params) {
         if (!sub && !err_b) {
             sub = true;
             
+            // before
+            callf(params.before);
+            
             // image loading insert to the place
             if (params.img) {
                 showel(form.find('#JSf_loading'), '<img src="' + params.img + '" /> ');
@@ -90,10 +88,10 @@ function JSubmitform(form, params) {
                             showel(form.find('#JSf_error'), o.success);
 
                             // success
-                            callf(params.success());
+                            callf(params.success);
                         } else {
                             // error
-                            callf(params.error());
+                            callf(params.error);
                         }
                     } catch (e) {
                         
@@ -101,7 +99,7 @@ function JSubmitform(form, params) {
                         showel(form.find('#JSf_error'), 'Error');
                         
                         // warning
-                        callf(params.warning());
+                        callf(params.warning);
                     }
                     hideel(form.find('#JSf_loading'));
 
@@ -115,7 +113,7 @@ function JSubmitform(form, params) {
                     showel(form.find('#JSf_error'), 'NO response');
                         
                     // noresponse
-                    callf(params.noresponse());
+                    callf(params.noresponse);
                     
                     sub = false;
                 }
