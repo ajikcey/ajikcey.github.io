@@ -8,15 +8,15 @@ function JSubmitform(form, params) {
     // default
     if (!params || typeof(params) != "object") {
         params = {
-        err = form.find('#JSf_error'),
-            attr = "error",
-            img_pl =  form.find('#JSf_loading'),
-            img = "/files/images/ajax-loader.gif",
-            img_pend = "pre",
-            success = function() {},
-            error = function() {},
-            warning = function() {},
-            always = function() {}
+            err: form.find('#JSf_error'),
+            attr: "error",
+            img_pl:  form.find('#JSf_loading'),
+            img: "/files/images/ajax-loader.gif",
+            img_pend: "pre",
+            success: function() {},
+            error: function() {},
+            warning: function() {},
+            always: function() {}
         };
     } else {
         
