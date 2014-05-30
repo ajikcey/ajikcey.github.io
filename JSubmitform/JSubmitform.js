@@ -1,5 +1,10 @@
 /*
 
+Parameters:
+
+img             - image loading <img src="...">
+debug           - show debug info
+
 Functions:
 
 before({form: form});
@@ -110,8 +115,10 @@ function JSubmitform(form, params) {
                         //}
                     //} catch (e) {
                         
-                        // for debug
-                        // showel(form.find('#JSf_error'), 'Warning');
+                        // debug
+                        if (params.debug) {
+                            showel(form.find('#JSf_error'), 'Warning');
+                        }
                         
                         // warning
                         //callf(params.error, {form: form});
@@ -119,8 +126,10 @@ function JSubmitform(form, params) {
                 },
                 error: function() {
                     
-                    // for debug
-                    // showel(form.find('#JSf_error'), 'NO response');
+                    // debug
+                    if (params.debug) {
+                        showel(form.find('#JSf_error'), 'NO response');
+                    }
                         
                     // noresponse
                     callf(params.noresponse, {form: form});
