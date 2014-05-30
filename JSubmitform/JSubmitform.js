@@ -38,7 +38,7 @@ function JSubmitform(form, params) {
             success: function() {},
             error: function() {},
             warning: function() {},
-            warning: function() {},
+            always: function() {},
             noresponse: function() {}
         };
     } else {
@@ -122,7 +122,7 @@ function JSubmitform(form, params) {
             })
             .always(function() {
                 // always
-                callf(params.always());
+                callf(params.always);
             });
         }
         return false;
