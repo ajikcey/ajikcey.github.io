@@ -13,6 +13,10 @@ Elements:
 #JSf_loading - element for loading image
 #JSf_submit - button submit
 
+Attributes:
+
+JS_necessary - required fields
+
 */
 function JSubmitform(form, params) {
     
@@ -59,7 +63,7 @@ function JSubmitform(form, params) {
         // before
         callf(params.before, {form: form});
         
-        form.find('*[necessary=""]').each(function() {
+        form.find('*[JS_necessary=""]').each(function() {
             
             // if not filled in the required fields
             if (!$(this).val()) {
