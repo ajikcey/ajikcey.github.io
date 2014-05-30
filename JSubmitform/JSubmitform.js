@@ -7,15 +7,15 @@ function JSubmitform(form, params) {
 
     // default
     if (!params || typeof(params) != "object") {
-        params.err = form.find('#JSf_error'),
-        params.attr = "error",
-        params.img_pl =  form.find('#JSf_loading'),
-        params.img = "/files/images/ajax-loader.gif",
-        params.img_pend = "pre",
-        params.success = function() {},
-        params.error = function() {},
-        params.warning = function() {},
-        params.always = function() {}
+        params.err = form.find('#JSf_error');
+        params.attr = "error";
+        params.img_pl =  form.find('#JSf_loading');
+        params.img = "/files/images/ajax-loader.gif";
+        params.img_pend = "pre";
+        params.success = function() {};
+        params.error = function() {};
+        params.warning = function() {};
+        params.always = function() {};
     } else {
         
     }
