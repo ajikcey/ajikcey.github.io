@@ -15,7 +15,7 @@ function JSubmitform(form, params) {
         params.success = function() {},
         params.error = function() {},
         params.warning = function() {},
-        params.always = function() {},
+        params.always = function() {}
     } else {
         
     }
