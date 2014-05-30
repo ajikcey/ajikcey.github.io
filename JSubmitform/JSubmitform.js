@@ -49,6 +49,9 @@ function JSubmitform(form, params) {
 
         var err_b = false;
         
+        // before
+        callf(params.before);
+        
         form.find('*[necessary=""]').each(function() {
             
             // if not filled in the required fields
@@ -65,9 +68,6 @@ function JSubmitform(form, params) {
 
         if (!sub && !err_b) {
             sub = true;
-            
-            // before
-            callf(params.before);
             
             // image loading insert to the place
             if (params.img) {
