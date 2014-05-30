@@ -15,16 +15,16 @@ always({form: form});
 
 Elements:
 
-#JSf_error      - element for response
-#JSf_loading    - element for loading image
-#JSf_submit     - button submit
+#jsf_error      - element for response
+#jsf_loading    - element for loading image
+#jsf_submit     - button submit
 
 Attributes:
 
 JSf_necessary   - required fields and value
 
 */
-function JSubmitform(form, params) {
+function jsubmitform(form, params) {
     
     // call function "f" this parameters "p" as object
     function callf(f, p) {
@@ -54,7 +54,7 @@ function JSubmitform(form, params) {
     }
     
     if (!params.img) {
-        params.img = "/JSubmitform/load.gif";
+        params.img = "/jsubmitform/load.gif";
     }
     
     if (!params.error) {
@@ -63,24 +63,24 @@ function JSubmitform(form, params) {
 
     var sub = false;    // send request flag
 
-    form.find('#JSf_submit').on('click', function () {
+    form.find('#jsf_submit').on('click', function () {
         
-        hideel(form.find('#JSf_error'));
-        hideel(form.find('#JSf_loading'));
+        hideel(form.find('#jsf_error'));
+        hideel(form.find('#jsf_loading'));
 
         var err_b = false;
         
         // before
         callf(params.before, {form: form});
         
-        form.find('*[JSf_necessary != ""]').each(function() {
+        form.find('*[jsf_necessary != ""]').each(function() {
             
             // if not filled in the required fields
             if (!$(this).val()) {
                 
                 // error
                 if (params.error) {
-                    showel(form.find('#JSf_error'), $(this).attr("JSf_necessary"));
+                    showel(form.find('#jsf_error'), $(this).attr("jsf_necessary"));
                 }
 
                 err_b = true;
@@ -96,7 +96,7 @@ function JSubmitform(form, params) {
             
             // image loading insert to the place
             if (params.img) {
-                showel(form.find('#JSf_loading'), '<img src="' + params.img + '" /> ');
+                showel(form.find('#jsf_loading'), '<img src="' + params.img + '" /> ');
             }
             
             // ajax
@@ -132,7 +132,7 @@ function JSubmitform(form, params) {
                     
                     // debug
                     if (params.debug) {
-                        showel(form.find('#JSf_error'), 'Debug: no response');
+                        showel(form.find('#jsf_error'), 'Debug: no response');
                     }
                         
                     // noresponse
@@ -143,7 +143,7 @@ function JSubmitform(form, params) {
                 // always
                 callf(params.always, {form: form});
                 
-                hideel(form.find('#JSf_loading'));
+                hideel(form.find('#jsf_loading'));
                 sub = false;
             });
         }
