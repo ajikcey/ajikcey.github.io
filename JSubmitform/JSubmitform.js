@@ -111,26 +111,22 @@ function JSubmitform(form, params) {
                         // warning
                         //callf(params.error, {form: form});
                     //}
-                    hideel(form.find('#JSf_loading'));
-
-                    sub = false;
                 },
                 error: function() {
-                    
-                    hideel(form.find('#JSf_loading'));
                     
                     // for debug
                     // showel(form.find('#JSf_error'), 'NO response');
                         
                     // noresponse
                     callf(params.noresponse, {form: form});
-                    
-                    sub = false;
                 }
             })
             .always(function() {
                 // always
                 callf(params.always, {form: form});
+                
+                hideel(form.find('#JSf_loading'));
+                sub = false;
             });
         }
         return false;
