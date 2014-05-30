@@ -82,16 +82,16 @@
 			<script>
 				JSubmitform($('form'), {
 					before: function(o) {
-						alert(o.form.find('input').val());
+						alert("before " + o.form.find('input').val());
 					},
 					success: function(o) {
-						alert(o.data);
+						alert("success " + o.data);
 					},
 					noresponse: function(o) {
-						alert(o.form.find('input').val());
+						alert("noresponse " + o.form.find('input').val());
 					},
 					always: function(o) {
-						alert(o.form.find('input').val());
+						alert("always " + o.form.find('input').val());
 					}
 				});
 			</script>
