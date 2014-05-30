@@ -81,6 +81,7 @@
 			<!--script-->
 			<script>
 				JSubmitform($('form'), {
+					debug: true,
 					before: function(o) {
 						alert("before " + o.form.find('input').val());
 					},
