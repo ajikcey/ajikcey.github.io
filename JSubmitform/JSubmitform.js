@@ -26,7 +26,7 @@ function JSubmitform(form, params) {
         
         alert();
         
-        params.err.hide();
+        form.find('#JSf_error').hide();
 
         var err_b = false;
         
