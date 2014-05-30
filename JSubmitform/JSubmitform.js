@@ -22,7 +22,7 @@ function JSubmitform(form, params) {
 
     var sub = false;    // send request flag
 
-    form.find('*:submit').on('click', function () {
+    form.find('#JSf_submit').on('click', function () {
         
         alert();
         
