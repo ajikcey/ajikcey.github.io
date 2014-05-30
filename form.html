@@ -19,7 +19,7 @@
 	<script src="/bootstrap/js/bootstrap.js"></script>
 	
 	<!--JSubmitform-->
-	<script src="/JSubmitform/JSubmitform.js"></script>
+	<script src="/jsubmitform/jsubmitform.js"></script>
 </head>
 <body>
 	
@@ -44,7 +44,7 @@
 	
 					<div class="col-sm-8">
 						<input type="password" class="form-control" name="old_pass" placeholder=""
-							JSf_necessary="Введите пароль" />
+							jsf_necessary="Введите пароль" />
 					</div>
 				</div>
 	
@@ -53,7 +53,7 @@
 	
 					<div class="col-sm-8">
 						<input type="password" class="form-control" name="rep_pass" placeholder=""
-							JSf_necessary="Повторите пароль" />
+							jsf_necessary="Повторите пароль" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -61,18 +61,18 @@
 	
 					<div class="col-sm-8">
 						<input type="password" class="form-control" name="new_pass" placeholder=""
-							JSf_necessary="Введите новый пароль" />
+							jsf_necessary="Введите новый пароль" />
 					</div>
 				</div>
 	
 				<div class="form-group">
 					<div class="col-sm-offset-4 col-sm-8">
-						<div id="JSf_submit" class="btn btn-primary">Отправить</div>
+						<div id="jsf_submit" class="btn btn-primary">Отправить</div>
 							<!--error-->
-							<span id="JSf_error"></span>
+							<span id="jsf_error"></span>
 							
 							<!--loading image-->
-							<span id="JSf_loading"></span>
+							<span id="jsf_loading"></span>
 						</div>
 					</div>
 				</div>
@@ -80,7 +80,7 @@
 	
 			<!--script-->
 			<script>
-				JSubmitform($('form'), {
+				jsubmitform($('form'), {
 					debug: true,
 					before: function(o) {
 						alert("before " + o.form.find('input').val());
