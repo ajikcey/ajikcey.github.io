@@ -73,7 +73,7 @@ function JSubmitform(form, params) {
         // before
         callf(params.before, {form: form});
         
-        form.find('*[JSf_necessary!=""]').each(function() {
+        form.find('*[JSf_necessary != ""]').each(function() {
             
             // if not filled in the required fields
             if (!$(this).val()) {
