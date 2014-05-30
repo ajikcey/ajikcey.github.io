@@ -80,7 +80,11 @@
 	
 			<!--script-->
 			<script>
-				JSubmitform($('form'));
+				JSubmitform($('form'), {
+					before: function() {
+						alert();
+					}
+				});
 			</script>
 
       	</section>
