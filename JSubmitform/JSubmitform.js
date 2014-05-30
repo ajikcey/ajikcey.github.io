@@ -1,4 +1,20 @@
+/*
+
+Elements:
+
+#JSf_error - element for response
+#JSf_loading - element for loading image
+#JSf_submit - button submit
+
+*/
 function JSubmitform(form, params) {
+    
+    // call function
+    function callf(f) {
+        if (f && typeof(f) === "function") {
+            f();
+        }
+    }
     
     // validation
     if (!form || typeof(form) != "object") {
@@ -44,7 +60,9 @@ function JSubmitform(form, params) {
             sub = true;
             
             // image loading insert to the place
-            form.find('#JSf_loading').html('<img src="' + params.img + '" /> ');
+            if (params.img) {
+                form.find('#JSf_loading').html('<img src="' + params.img + '" /> ');
+            }
             
             // ajax
             $.ajax({
@@ -60,14 +78,10 @@ function JSubmitform(form, params) {
                             form.find('#JSf_error').html(o.success).show();
 
                             // success
-                            if (success && typeof(success) === "function") {
-                                params.success();
-                            }
+                            callf(params.success());
                         } else {
                             // error
-                            if (error && typeof(error) === "function") {
-                                params.error();
-                            }
+                            callf(params.error());
                         }
                     } catch (e) {
                         
@@ -75,9 +89,7 @@ function JSubmitform(form, params) {
                         form.find('#JSf_error').html('Error').show();
                         
                         // warning
-                        if (warning && typeof(warning) === "function") {
-                            params.warning();
-                        }
+                        callf(params.warning());
                     }
                     form.find('#JSf_loading').html("");
 
@@ -86,9 +98,7 @@ function JSubmitform(form, params) {
             })
             .always(function() {
                 // always
-                if (always && typeof(always) === "function") {
-                    params.always();
-                }
+                callf(params.always());
             });
         }
         return false;
