@@ -9,13 +9,14 @@ always({form: form});
 
 Elements:
 
-#JSf_error - element for response
-#JSf_loading - element for loading image
-#JSf_submit - button submit
+#JSf_error      - element for response
+#JSf_loading    - element for loading image
+#JSf_submit     - button submit
 
 Attributes:
 
-JS_necessary - required fields
+JSf_necessary   - required fields
+JSf_error       - empty required fields
 
 */
 function JSubmitform(form, params) {
