@@ -8,9 +8,7 @@ function JSubmitform(form, params) {
     // default
     if (!params || typeof(params) != "object") {
         params = {
-            attr: "error",
-            img: "/files/images/ajax-loader.gif",
-            img_pend: "pre",
+            img: "/files/ajax-loader.gif",
             success: function() {},
             error: function() {},
             warning: function() {},
@@ -46,11 +44,7 @@ function JSubmitform(form, params) {
             sub = true;
             
             // image loading insert to the place
-            if (params.img_pend == "pre") {
-                form.find('#JSf_loading').prepend('<img src="' + params.img + '" /> ');
-            } else if (params.img_pend == "ap") {
-                form.find('#JSf_loading').append('<img src="' + params.img + '" /> ');
-            }
+            form.find('#JSf_loading').html('<img src="' + params.img + '" /> ');
             
             // ajax
             $.ajax({
