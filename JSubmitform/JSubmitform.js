@@ -27,10 +27,10 @@ JSf_error       - empty required fields
 */
 function JSubmitform(form, params) {
     
-    // call function "f" this parameters "JS" as object
-    function callf(f, JS) {
+    // call function "f" this parameters "p" as object
+    function callf(f, p) {
         if (f && typeof(f) === "function") {
-            f(JS);
+            f(p);
         }
     }
     
