@@ -4,6 +4,7 @@ Parameters:
 
 img             - image loading <img src="...">
 debug           - show debug info
+error           - show error info
 
 Functions:
 
@@ -50,11 +51,15 @@ function JSubmitform(form, params) {
 
     // default
     if (!params || typeof(params) != "object") {
-        params = {
-            img: "/JSubmitform/load.gif"
-        };
-    } else {
-        
+        params = {};
+    }
+    
+    if (!params.img) {
+        params.img: "/JSubmitform/load.gif";
+    }
+    
+    if (!params.error) {
+        params.error: true;
     }
 
     var sub = false;    // send request flag
@@ -73,7 +78,11 @@ function JSubmitform(form, params) {
             
             // if not filled in the required fields
             if (!$(this).val()) {
-                showel(form.find('#JSf_error'), $(this).attr("JSf_error"));
+                
+                // error
+                if (params.error) {
+                    showel(form.find('#JSf_error'), $(this).attr("JSf_error"));
+                }
 
                 err_b = true;
                 
@@ -115,10 +124,6 @@ function JSubmitform(form, params) {
                         //}
                     //} catch (e) {
                         
-                        // debug
-                        if (params.debug) {
-                            showel(form.find('#JSf_error'), 'Warning');
-                        }
                         
                         // warning
                         //callf(params.error, {form: form});
@@ -128,7 +133,7 @@ function JSubmitform(form, params) {
                     
                     // debug
                     if (params.debug) {
-                        showel(form.find('#JSf_error'), 'NO response');
+                        showel(form.find('#JSf_error'), 'Debug: no response');
                     }
                         
                     // noresponse
