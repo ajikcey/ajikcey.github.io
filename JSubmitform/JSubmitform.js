@@ -1,5 +1,12 @@
 /*
 
+Functions:
+
+before({form: form});
+success({form: form, data: data});
+noresponse({form: form});
+always({form: form});
+
 Elements:
 
 #JSf_error - element for response
@@ -9,10 +16,10 @@ Elements:
 */
 function JSubmitform(form, params) {
     
-    // call function
-    function callf(f) {
+    // call function "f" this parameters "JS" as object
+    function callf(f, JS) {
         if (f && typeof(f) === "function") {
-            f();
+            f(JS);
         }
     }
     
@@ -50,7 +57,7 @@ function JSubmitform(form, params) {
         var err_b = false;
         
         // before
-        callf(params.before);
+        callf(params.before, {form: form});
         
         form.find('*[necessary=""]').each(function() {
             
@@ -81,26 +88,29 @@ function JSubmitform(form, params) {
                 data: form.serialize(),
                 success: function (data) {
 
-                    try {
-                        var o = $.parseJSON(data);
-                        if (o.success) {
-                            
-                            showel(form.find('#JSf_error'), o.success);
-
-                            // success
-                            callf(params.success);
-                        } else {
+                    //try {
+                        //var o = $.parseJSON(data);
+                        //if (o.success) {
+                        //    
+                        //    showel(form.find('#JSf_error'), o.success);
+                        //
+                        //    // success
+                            callf(params.success, {form: form, data: data});
+                        //} else {
                             // error
-                            callf(params.error);
-                        }
-                    } catch (e) {
+                        //    callf(params.error, {
+                        //        data: data,
+                        //        form: form
+                        //    });
+                        //}
+                    //} catch (e) {
                         
                         // for debug
-                        showel(form.find('#JSf_error'), 'Error');
+                        // showel(form.find('#JSf_error'), 'Warning');
                         
                         // warning
-                        callf(params.warning);
-                    }
+                        //callf(params.error, {form: form});
+                    //}
                     hideel(form.find('#JSf_loading'));
 
                     sub = false;
@@ -110,17 +120,17 @@ function JSubmitform(form, params) {
                     hideel(form.find('#JSf_loading'));
                     
                     // for debug
-                    showel(form.find('#JSf_error'), 'NO response');
+                    // showel(form.find('#JSf_error'), 'NO response');
                         
                     // noresponse
-                    callf(params.noresponse);
+                    callf(params.noresponse, {form: form});
                     
                     sub = false;
                 }
             })
             .always(function() {
                 // always
-                callf(params.always);
+                callf(params.always, {form: form});
             });
         }
         return false;
