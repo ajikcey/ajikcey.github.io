@@ -34,7 +34,7 @@ function JSubmitform(form, params) {
     // default
     if (!params || typeof(params) != "object") {
         params = {
-            img: "load.gif",
+            img: "/JSubmitform/load.gif",
             success: function() {},
             error: function() {},
             warning: function() {},
