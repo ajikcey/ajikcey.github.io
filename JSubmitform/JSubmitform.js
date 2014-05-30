@@ -21,8 +21,7 @@ Elements:
 
 Attributes:
 
-JSf_necessary   - required fields
-JSf_error       - empty required fields
+JSf_necessary   - required fields and value
 
 */
 function JSubmitform(form, params) {
@@ -81,7 +80,7 @@ function JSubmitform(form, params) {
                 
                 // error
                 if (params.error) {
-                    showel(form.find('#JSf_error'), $(this).attr("JSf_error"));
+                    showel(form.find('#JSf_error'), $(this).attr("JSf_necessary"));
                 }
 
                 err_b = true;
