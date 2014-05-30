@@ -24,8 +24,6 @@ function JSubmitform(form, params) {
 
     form.find('#JSf_submit').on('click', function () {
         
-        alert();
-        
         form.find('#JSf_error').hide();
 
         var err_b = false;
