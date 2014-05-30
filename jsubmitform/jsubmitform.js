@@ -11,7 +11,7 @@ Functions:
 before({form: form});
 success({form: form, data: data});
 noresponse({form: form});
-always({form: form});
+after({form: form});
 
 Elements:
 
@@ -140,8 +140,8 @@ function jsubmitform(form, params) {
                 }
             })
             .always(function() {
-                // always
-                callf(params.always, {form: form});
+                // after
+                callf(params.after, {form: form});
                 
                 hideel(form.find('#jsf_loading'));
                 sub = false;
