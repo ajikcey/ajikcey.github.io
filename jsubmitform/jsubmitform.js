@@ -21,7 +21,7 @@ Elements:
 
 Attributes:
 
-JSf_necessary   - required fields and value
+jsf_necessary   - required fields and value
 
 */
 function jsubmitform(form, params) {
