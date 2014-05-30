@@ -8,9 +8,7 @@ function JSubmitform(form, params) {
     // default
     if (!params || typeof(params) != "object") {
         params = {
-            err: form.find('#JSf_error'),
             attr: "error",
-            img_pl:  form.find('#JSf_loading'),
             img: "/files/images/ajax-loader.gif",
             img_pend: "pre",
             success: function() {},
@@ -26,8 +24,6 @@ function JSubmitform(form, params) {
 
     form.find('*:submit').on('click', function () {
         
-        alert();
-        
         params.err.hide();
 
         var err_b = false;
@@ -36,7 +32,7 @@ function JSubmitform(form, params) {
             
             // if not filled in the required fields
             if (!$(this).val()) {
-                params.err.html($(this).attr(params.attr)).show();
+                form.find('#JSf_error').html($(this).attr("JSf_error")).show();
 
                 err_b = true;
                 
@@ -51,9 +47,9 @@ function JSubmitform(form, params) {
             
             // image loading insert to the place
             if (params.img_pend == "pre") {
-                params.img_pl.prepend('<img src="' + params.img + '" /> ');
+                form.find('#JSf_loading').prepend('<img src="' + params.img + '" /> ');
             } else if (params.img_pend == "ap") {
-                params.img_pl.append('<img src="' + params.img + '" /> ');
+                form.find('#JSf_loading').append('<img src="' + params.img + '" /> ');
             }
             
             // ajax
@@ -67,7 +63,7 @@ function JSubmitform(form, params) {
                         var o = $.parseJSON(data);
                         if (o.success) {
                             
-                            params.err.html(o.success).show();
+                            form.find('#JSf_error').html(o.success).show();
 
                             // success
                             if (success && typeof(success) === "function") {
@@ -82,14 +78,14 @@ function JSubmitform(form, params) {
                     } catch (e) {
                         
                         // for debug
-                        params.err.html('Error').show();
+                        form.find('#JSf_error').html('Error').show();
                         
                         // warning
                         if (warning && typeof(warning) === "function") {
                             params.warning();
                         }
                     }
-                    params.img_pl.html("");
+                    form.find('#JSf_loading').html("");
 
                     sub = false;
                 }
