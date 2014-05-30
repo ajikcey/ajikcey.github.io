@@ -8,7 +8,7 @@ function JSubmitform(form, params) {
     // default
     if (!params || typeof(params) != "object") {
         params = {
-            img: "/files/ajax-loader.gif",
+            img: "/files/images/ajax-loader.gif",
             success: function() {},
             error: function() {},
             warning: function() {},
