@@ -55,11 +55,11 @@ function JSubmitform(form, params) {
     }
     
     if (!params.img) {
-        params.img: "/JSubmitform/load.gif";
+        params.img = "/JSubmitform/load.gif";
     }
     
     if (!params.error) {
-        params.error: true;
+        params.error = true;
     }
 
     var sub = false;    // send request flag
