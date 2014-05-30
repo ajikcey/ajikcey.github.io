@@ -16,6 +16,16 @@ function JSubmitform(form, params) {
         }
     }
     
+    // show element "what" in "where"
+    function showel(where, what) {
+        where.html(what).show();
+    }
+    
+    // hide element
+    function hideel(where) {
+        where.html("").hide();
+    }
+    
     // validation
     if (!form || typeof(form) != "object") {
         return false;
@@ -38,7 +48,8 @@ function JSubmitform(form, params) {
 
     form.find('#JSf_submit').on('click', function () {
         
-        form.find('#JSf_error').hide();
+        hideel(form.find('#JSf_error'));
+        hideel(form.find('#JSf_loading'));
 
         var err_b = false;
         
@@ -46,7 +57,7 @@ function JSubmitform(form, params) {
             
             // if not filled in the required fields
             if (!$(this).val()) {
-                form.find('#JSf_error').html($(this).attr("JSf_error")).show();
+                showel(form.find('#JSf_error'), $(this).attr("JSf_error"));
 
                 err_b = true;
                 
@@ -61,7 +72,7 @@ function JSubmitform(form, params) {
             
             // image loading insert to the place
             if (params.img) {
-                form.find('#JSf_loading').html('<img src="' + params.img + '" /> ');
+                showel(form.find('#JSf_loading'), '<img src="' + params.img + '" /> ');
             }
             
             // ajax
@@ -75,7 +86,7 @@ function JSubmitform(form, params) {
                         var o = $.parseJSON(data);
                         if (o.success) {
                             
-                            form.find('#JSf_error').html(o.success).show();
+                            showel(form.find('#JSf_error'), o.success);
 
                             // success
                             callf(params.success());
@@ -86,14 +97,24 @@ function JSubmitform(form, params) {
                     } catch (e) {
                         
                         // for debug
-                        form.find('#JSf_error').html('Error').show();
+                        showel(form.find('#JSf_error'), 'Error');
                         
                         // warning
                         callf(params.warning());
                     }
-                    form.find('#JSf_loading').html("");
+                    hideel(form.find('#JSf_loading'));
 
                     sub = false;
+                },
+                error: function() {
+                    
+                    hideel(form.find('#JSf_loading'));
+                    
+                    // for debug
+                    showel(form.find('#JSf_error'), 'NOT response');
+                        
+                    // warning
+                    callf(params.warning());
                 }
             })
             .always(function() {
