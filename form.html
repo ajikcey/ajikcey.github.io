@@ -86,6 +86,12 @@
 					},
 					success: function(o) {
 						alert(o.data);
+					},
+					noresponse: function(o) {
+						alert(o.form.find('input').val());
+					},
+					always: function(o) {
+						alert(o.form.find('input').val());
 					}
 				});
 			</script>
