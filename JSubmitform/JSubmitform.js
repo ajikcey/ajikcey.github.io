@@ -34,11 +34,12 @@ function JSubmitform(form, params) {
     // default
     if (!params || typeof(params) != "object") {
         params = {
-            img: "/files/images/ajax-loader.gif",
+            img: "/JSubmitform/load.gif",
             success: function() {},
             error: function() {},
             warning: function() {},
-            always: function() {}
+            warning: function() {},
+            noresponse: function() {}
         };
     } else {
         
@@ -111,10 +112,10 @@ function JSubmitform(form, params) {
                     hideel(form.find('#JSf_loading'));
                     
                     // for debug
-                    showel(form.find('#JSf_error'), 'NOT response');
+                    showel(form.find('#JSf_error'), 'NO response');
                         
-                    // warning
-                    callf(params.warning());
+                    // noresponse
+                    callf(params.noresponse());
                     
                     sub = false;
                 }
