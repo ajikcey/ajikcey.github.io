@@ -81,19 +81,11 @@
 			<!--script-->
 			<script>
 				jsubmitform($('form'), {
-					debug: true,
-					// before: function(o) {
-					// 	alert("before " + o.form.find('input').val());
-					// },
-					// success: function(o) {
-					// 	alert("success " + o.data);
-					// },
-					// noresponse: function(o) {
-					// 	alert("noresponse " + o.form.find('input').val());
-					// },
-					// after: function(o) {
-					// 	alert("always " + o.form.find('input').val());
-					// }
+				    debug: true,
+				    handle: true,
+				    success: function(o) {
+				        alert(o.data);
+				    }
 				});
 			</script>
 
